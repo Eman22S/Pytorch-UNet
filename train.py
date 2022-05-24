@@ -16,9 +16,9 @@ from utils.dice_score import dice_loss
 from evaluate import evaluate
 from unet import UNet
 
-dir_img = Path('./data/imgs/')
-dir_mask = Path('./data/masks/')
-dir_checkpoint = Path('./checkpoints/')
+dir_img = Path('/content/Pytorch-UNet/data/imgs/')
+dir_mask = Path('/content/Pytorch-UNet/data/masks/')
+dir_checkpoint = Path('/content/Pytorch-UNet/checkpoints/')
 
 
 def train_net(net,
@@ -141,6 +141,8 @@ def train_net(net,
             Path(dir_checkpoint).mkdir(parents=True, exist_ok=True)
             torch.save(net.state_dict(), str(dir_checkpoint / 'checkpoint_epoch{}.pth'.format(epoch)))
             logging.info(f'Checkpoint {epoch} saved!')
+        torch.save(net.state_dict(), 'MODEL.pth')
+
 
 
 def get_args():
